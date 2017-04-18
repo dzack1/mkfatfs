@@ -274,7 +274,7 @@ static int format_fat32(kos_blockdev_t *bd, uint32_t block_count,
          >  32GiB  : 64 blocks per cluster
        We'll mostly follow that suggestion here, with a few extensions.
        Note: This table makes things much cleaner than the FAT16 case. */
-    vol_size = block_count * DISKBLOCK_SIZE;
+    vol_size = (uint64_t)(block_count) * DISKBLOCK_SIZE;
     if(vol_size >= 128 * GiB)
         blocks_per_cluster = 256;
     else if(vol_size >= 64 * GiB)
